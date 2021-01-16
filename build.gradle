@@ -9,18 +9,21 @@ buildscript {
 	dependencies {
 		classpath "com.diffplug.spotless:spotless-plugin-gradle:3.10.0"
 		classpath "de.thetaphi:forbiddenapis:2.5"
-		classpath "de.aaschmid:gradle-cpd-plugin:1.0"
+		classpath "de.aaschmid:gradle-cpd-plugin:3.1"
 		classpath "net.ltgt.gradle:gradle-errorprone-plugin:0.0.14"
 		classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2"
-		classpath "com.gradle.publish:plugin-publish-plugin:0.9.10"
+        classpath "com.gradle.publish:plugin-publish-plugin:0.12.0"
+        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.5.1"
+        classpath "io.freefair.gradle:lombok-plugin:5.2.1"
 	}
 }
 
-group = "jp.classmethod.aws"
+group = "gradleutil.aws"
 ext.artifactId = "gradle-aws-plugin"
 
 apply plugin: "java"
 apply plugin: "jacoco"
+apply plugin: "io.freefair.lombok"
 apply plugin: "com.gradle.plugin-publish"
 
 // gradle configuration
@@ -31,7 +34,7 @@ defaultTasks "clean", "build"
 
 // ======== code quality ========
 apply plugin: "checkstyle"
-apply plugin: "findbugs"
+apply plugin: "com.github.spotbugs"
 apply plugin: "pmd"
 apply plugin: "cpd"
 apply plugin: "jacoco"
@@ -49,6 +52,8 @@ compileJava {
 options.compilerArgs << "-Werror"
 	options.compilerArgs << "-Xlint:all" << "-Xlint:-processing" << "-Xlint:-deprecation"
 }
+
+generateLombokConfig.enabled = false
 
 // jacoco
 jacocoTestReport {
@@ -92,18 +97,14 @@ task verifyNoCheckstyleWarningsInTest {
 }
 checkstyleTest.finalizedBy verifyNoCheckstyleWarningsInTest
 
-// findbugs
-findbugs {
-	toolVersion = "3.0.1"
-	effort = "max"
-	includeFilter = file("config/findbugs/includeFilter.xml")
-	excludeFilter = file("config/findbugs/excludeFilter.xml")
-}
-tasks.withType(FindBugs) {
-	reports {
-		xml.enabled = false
-		html.enabled = true
-	}
+// spotbugs
+spotbugs {
+    ignoreFailures = false
+    showStackTraces = true
+    showProgress = true
+    effort = 'default'
+    reportLevel = 'default'
+    reportsDir = file("$buildDir/spotbugs")
 }
 
 // pmd
@@ -207,7 +208,6 @@ dependencies {
 	compile gradleApi()
 	compile "com.google.guava:guava:$guavaVersion"
 	compile "commons-io:commons-io:1.4"
-	compileOnly "org.projectlombok:lombok:$lombokVersion"
 
 	compile "com.amazonaws:aws-java-sdk-sts:$awsJavaSdkVersion"
 	compile "com.amazonaws:aws-java-sdk-s3:$awsJavaSdkVersion"
@@ -237,8 +237,3 @@ dependencies {
 // Allows forks of the plugin to define their own deployment mechanisms
 // in separate files named according to their maven group name
 apply from: "deploy/${group}.gradle"
-
-// ======== wrapper ========
-task wrapper(type: Wrapper) {
-	gradleVersion = "4.6"
-}

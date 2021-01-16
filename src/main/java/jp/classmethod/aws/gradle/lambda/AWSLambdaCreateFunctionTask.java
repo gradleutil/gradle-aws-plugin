@@ -15,6 +15,15 @@
  */
 package jp.classmethod.aws.gradle.lambda;
 
+import com.amazonaws.services.lambda.AWSLambda;
+import com.amazonaws.services.lambda.model.Runtime;
+import com.amazonaws.services.lambda.model.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.gradle.api.GradleException;
+import org.gradle.api.internal.ConventionTask;
+import org.gradle.api.tasks.TaskAction;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,21 +31,6 @@ import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Map;
-
-import lombok.Getter;
-import lombok.Setter;
-
-import org.gradle.api.GradleException;
-import org.gradle.api.internal.ConventionTask;
-import org.gradle.api.tasks.TaskAction;
-
-import com.amazonaws.services.lambda.AWSLambda;
-import com.amazonaws.services.lambda.model.CreateFunctionRequest;
-import com.amazonaws.services.lambda.model.CreateFunctionResult;
-import com.amazonaws.services.lambda.model.Environment;
-import com.amazonaws.services.lambda.model.FunctionCode;
-import com.amazonaws.services.lambda.model.Runtime;
-import com.amazonaws.services.lambda.model.VpcConfig;
 
 public class AWSLambdaCreateFunctionTask extends ConventionTask {
 	
@@ -62,7 +56,7 @@ public class AWSLambdaCreateFunctionTask extends ConventionTask {
 	
 	@Getter
 	@Setter
-	private Integer timeout;
+	private Integer lambdaTimeout;
 	
 	@Getter
 	@Setter
@@ -142,7 +136,7 @@ public class AWSLambdaCreateFunctionTask extends ConventionTask {
 			.withRole(getRole())
 			.withHandler(getHandler())
 			.withDescription(getFunctionDescription())
-			.withTimeout(getTimeout())
+			.withTimeout(getLambdaTimeout())
 			.withMemorySize(getMemorySize())
 			.withPublish(getPublish())
 			.withVpcConfig(getVpcConfig())

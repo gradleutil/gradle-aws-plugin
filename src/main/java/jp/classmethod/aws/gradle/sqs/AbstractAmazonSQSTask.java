@@ -24,12 +24,14 @@ public class AbstractAmazonSQSTask extends ConventionTask {
 	
 	/**
 	 * Amazon SQS queue URL
+	 * @param queueUrl url
 	 */
 	@Setter
 	private String queueUrl;
 	
 	/**
 	 * Amazon SQS queue name, queueUrl takes precedence if also provided.
+	 * @param queueName queue name
 	 */
 	@Setter
 	private String queueName;

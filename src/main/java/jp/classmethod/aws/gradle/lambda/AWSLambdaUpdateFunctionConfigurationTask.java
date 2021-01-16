@@ -15,27 +15,19 @@
  */
 package jp.classmethod.aws.gradle.lambda;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Map;
-
+import com.amazonaws.services.lambda.AWSLambda;
+import com.amazonaws.services.lambda.model.*;
+import com.google.common.collect.MapDifference;
+import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
-
 import org.gradle.api.GradleException;
 import org.gradle.api.internal.ConventionTask;
 import org.gradle.api.tasks.TaskAction;
 
-import com.amazonaws.services.lambda.AWSLambda;
-import com.amazonaws.services.lambda.model.Environment;
-import com.amazonaws.services.lambda.model.ListTagsRequest;
-import com.amazonaws.services.lambda.model.ListTagsResult;
-import com.amazonaws.services.lambda.model.TagResourceRequest;
-import com.amazonaws.services.lambda.model.UntagResourceRequest;
-import com.amazonaws.services.lambda.model.UpdateFunctionConfigurationRequest;
-import com.amazonaws.services.lambda.model.UpdateFunctionConfigurationResult;
-import com.google.common.collect.MapDifference;
-import com.google.common.collect.Maps;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Map;
 
 public class AWSLambdaUpdateFunctionConfigurationTask extends ConventionTask {
 	
@@ -57,7 +49,7 @@ public class AWSLambdaUpdateFunctionConfigurationTask extends ConventionTask {
 	
 	@Getter
 	@Setter
-	private Integer timeout;
+	private Integer lambdaTimeout;
 	
 	@Getter
 	@Setter
@@ -97,7 +89,7 @@ public class AWSLambdaUpdateFunctionConfigurationTask extends ConventionTask {
 			.withRole(getRole())
 			.withHandler(getHandler())
 			.withDescription(getFunctionDescription())
-			.withTimeout(getTimeout())
+			.withTimeout(getLambdaTimeout())
 			.withMemorySize(getMemorySize())
 			.withEnvironment(new Environment().withVariables(getEnvironment()));
 		updateFunctionConfiguration = lambda.updateFunctionConfiguration(request);

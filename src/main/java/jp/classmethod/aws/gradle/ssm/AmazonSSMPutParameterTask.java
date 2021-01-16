@@ -40,6 +40,8 @@ public class AmazonSSMPutParameterTask extends ConventionTask {
 	 * If overwrite is set true, the parameter which has the same
 	 * name will be overwritten with the task execution.
 	 * The default value is false.
+	 * @param overwrite overwrite or not
+	 * @return boolean
 	 */
 	@Getter
 	@Setter
@@ -49,6 +51,8 @@ public class AmazonSSMPutParameterTask extends ConventionTask {
 	 * used to group parameters with specific prefix.
 	 * when prefix = "foo." and parameter name = "bar",
 	 * actual parameter name will be "foo.bar".
+	 * @param prefix the prefix
+	 * @return String
 	 */
 	@Getter
 	@Setter

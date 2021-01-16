@@ -34,6 +34,8 @@ public class CreateBucketTask extends ConventionTask {
 	 * Amazon S3 bucket names are globally unique, regardless of the AWS region in which you create the bucket.
 	 * http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html
 	 * See also http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html
+	 * @param bucketName name of bucket
+	 * @return String
 	 */
 	@Getter
 	@Setter
@@ -44,6 +46,8 @@ public class CreateBucketTask extends ConventionTask {
 	 * By default, the bucket is created in the US East (N. Virginia) region.
 	 * See http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region for details
 	 * Also http://bit.ly/2fxwwt5
+	 * @param region region name
+	 * @return String
 	 */
 	@Getter
 	@Setter
@@ -51,6 +55,8 @@ public class CreateBucketTask extends ConventionTask {
 	
 	/**
 	 * Create bucket only if it does not exists.
+	 * @param ifNotExists true or false
+	 * @return Boolean
 	 */
 	@Getter
 	@Setter
