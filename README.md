@@ -1,9 +1,23 @@
+<div style="float: left;">
+
+[![都元ダイスケ](docs/都元ダイスケ.png)](https://github.com/dai0304)
+
+</div>
+
 Gradle AWS Plugin
 =================
 
+都元ダイスケ Daisuke Miyamoto ([@dai0304](https://github.com/dai0304)), the original maintainer of this project, passed away on February 17, 2020.
+RIP :cherry_blossom: :rosette: :hibiscus:
+<br/>Thus the plugin prefix of `gradleutil.aws` while the package is `jp.classmethod.aws`
+
+<hr style="clear:both;"/>
+Gradle plugin to manage AWS resources.
+
+![build status](https://github.com/gradleutil/gradle-aws-plugin/workflows/Build%20master%20branch/badge.svg)
+
 [![Join the chat at https://gitter.im/gradle-aws-plugin/Lobby](https://badges.gitter.im/gradle-aws-plugin/Lobby.svg)](https://gitter.im/gradle-aws-plugin/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Gradle plugin to manage AWS resources.
 
 Current Features / Supported AWS Products
 -----------------------------------------
@@ -78,7 +92,7 @@ Requirements
 ------------
 
 * Java 8+
-* Gradle 2.4+
+* Gradle 6.8+
 
 Usage
 -----
@@ -92,11 +106,11 @@ buildscript {
     maven { url "https://plugins.gradle.org/m2/" }
   }
   dependencies {
-    classpath "jp.classmethod.aws:gradle-aws-plugin:0.30"
+    classpath "gradleutil.aws:gradle-aws-plugin:0.30"
   }
 }
 
-apply plugin: 'jp.classmethod.aws'
+apply plugin: 'gradleutil.aws'
 
 aws {
   profileName = 'credentials-profile-name-in-your-profile-configuration-file (~/.aws/credentials)'
@@ -109,7 +123,7 @@ These credentials are used to make API accesses by default. The format of the cr
 ### S3 Create bucket
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.s3'
+apply plugin: 'gradleutil.aws.s3'
 
 task createBucket(type: CreateBucketTask) {
 	bucketName myBucketName
@@ -126,7 +140,7 @@ Look at [S3 example 1](samples/01-s3-upload-simple) for more information.
 ### S3 files tasks
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.s3'
+apply plugin: 'gradleutil.aws.s3'
 
 task syncObjects(type: jp.classmethod.aws.gradle.s3.SyncTask) {
   bucketName 'foobar.example.com'
@@ -140,7 +154,7 @@ Look at [S3 example 1](samples/01-s3-upload-simple) and [S3 example 2](samples/0
 ### EC2 instance tasks
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.ec2'
+apply plugin: 'gradleutil.aws.ec2'
 
 // You can overwrite default credentials and region settings like this:
 // ec2 {
@@ -163,7 +177,7 @@ Look at [EC2 example](samples/03-ec2) for more information.
 ### RDS DB instance tasks
 
 ```groovy
-apply plugin: "jp.classmethod.aws.rds"
+apply plugin: "gradleutil.aws.rds"
 
 // You can overwrite default credentials and region settings like this:
 // rds {
@@ -200,7 +214,7 @@ Look at [RDS example](samples/07-rds) for more information.
 ### Route 53 hosted zone tasks
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.route53'
+apply plugin: 'gradleutil.aws.route53'
 
 task createHostedZone(type: jp.classmethod.aws.gradle.route53.CreateHostedZoneTask) {
 	hostedZoneName "foobar.example.com"
@@ -218,7 +232,7 @@ Look at [Route 53 example](samples/04-route53) for more information.
 ### Elastic Beanstalk environment tasks
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.beanstalk'
+apply plugin: 'gradleutil.aws.beanstalk'
 beanstalk {
   String extension = project.war.archiveName.tokenize('.').last()
   String timestamp = new Date().format("yyyyMMdd'_'HHmmss", TimeZone.default)
@@ -261,7 +275,7 @@ Look [Elastic Beanstalk example](samples/05-beanstalk) for more information.
 ### CloudFormation stack tasks
 
 ```groovy
-apply plugin: 'jp.classmethod.aws.cloudformation'
+apply plugin: 'gradleutil.aws.cloudformation'
 
 cloudFormation {
   stackName 'foobar-stack'
@@ -272,7 +286,7 @@ cloudFormation {
   stackTags([
     Bar: 'foo',
     Baz: 'fox'
-  })
+  ])
   capabilityIam true
   templateFile project.file("foobar.template")
   templateBucket 'example-bucket'
@@ -289,7 +303,7 @@ Look at [CloudFormation example](samples/06-cloudformation) for more information
 
 ```groovy
 apply plugin: "base"
-apply plugin: "jp.classmethod.aws.lambda"
+apply plugin: "gradleutil.aws.lambda"
 aws {
 	profileName = "default"
 	region = "ap-northeast-1"
@@ -364,7 +378,7 @@ Look at [Lambda example](samples/08-lambda) for more information.
 ### SQS tasks
 
 ```groovy
-apply plugin: "jp.classmethod.aws.sqs"
+apply plugin: "gradleutil.aws.sqs"
 
 task sendMessages(type: AmazonSQSSendMessagesTask) {
 	queueName 'gradle-aws-plugin-sample'
@@ -387,7 +401,7 @@ Look at [SQS example](samples/09-sqs) for more information.
 
 ### SNS tasks
 ```groovy
-apply plugin: "jp.classmethod.aws.sns"
+apply plugin: "gradleutil.aws.sns"
 
 task publishMessage(type: AmazonSNSPublishMessageTask) {
 	topicArn 'arn:aws:sns:us-east-1:000000000000:gradle-aws-plugin-sns-topic'
