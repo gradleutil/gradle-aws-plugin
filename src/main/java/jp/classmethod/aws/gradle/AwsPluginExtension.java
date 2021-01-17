@@ -89,7 +89,7 @@ public class AwsPluginExtension {
 		}
 		String roleArnToUse = roleArn != null ? roleArn : this.roleArn;
 		if (!Strings.isNullOrEmpty(roleArnToUse)) {
-			STSAssumeRoleSessionCredentialsProvider assumeRoleProvider =
+			STSAssumeRoleSessionCredentialsProvider assumeRoleProvider = // NOPMD
 					new STSAssumeRoleSessionCredentialsProvider.Builder(roleArnToUse, "gradle").build();
 			providers.add(assumeRoleProvider);
 		}
