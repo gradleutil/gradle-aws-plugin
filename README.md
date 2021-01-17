@@ -1,15 +1,11 @@
-<div style="float: left;">
-
-[![都元ダイスケ](docs/都元ダイスケ.png)](https://github.com/dai0304)
-
-</div>
+<img align="left" src="https://github.com/gradleutil/gradle-aws-plugin/raw/master/docs/%E9%83%BD%E5%85%83%E3%83%80%E3%82%A4%E3%82%B9%E3%82%B1.png">
 
 Gradle AWS Plugin
 =================
 
 都元ダイスケ Daisuke Miyamoto ([@dai0304](https://github.com/dai0304)), the original maintainer of this project, passed away on February 17, 2020.
 RIP :cherry_blossom: :rosette: :hibiscus:
-<br/>Thus the plugin prefix of `gradleutil.aws` while the package is `jp.classmethod.aws`
+<br/>The plugin has prefix of `gradleutil.aws` while the package is `jp.classmethod.aws`
 
 <hr style="clear:both;"/>
 Gradle plugin to manage AWS resources.
@@ -106,7 +102,7 @@ buildscript {
     maven { url "https://plugins.gradle.org/m2/" }
   }
   dependencies {
-    classpath "gradleutil.aws:gradle-aws-plugin:0.30"
+    classpath "gradleutil.aws:gradle-aws-plugin:0.42"
   }
 }
 
