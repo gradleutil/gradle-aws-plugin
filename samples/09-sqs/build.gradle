@@ -1,7 +1,7 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.sqs.AmazonSQSSendMessagesTask;
-import jp.classmethod.aws.gradle.sqs.AmazonSQSMessageConsumerTask;
+import gradleutil.aws.gradle.sqs.AmazonSQSSendMessagesTask;
+import gradleutil.aws.gradle.sqs.AmazonSQSMessageConsumerTask;
 
 import java.util.stream.Stream;
 
@@ -13,11 +13,11 @@ buildscript {
 
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.sqs"
+apply plugin: "gradleutil.aws.sqs"
 
 def myQueueName = 'gradle-aws-plugin-sample'
 

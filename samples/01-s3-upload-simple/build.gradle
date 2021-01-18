@@ -8,10 +8,10 @@ import com.amazonaws.auth.policy.resources.S3BucketResource
 import com.amazonaws.auth.policy.resources.S3ObjectResource
 import com.amazonaws.services.s3.model.ObjectMetadata
 
-import jp.classmethod.aws.gradle.s3.AmazonS3FileUploadTask
-import jp.classmethod.aws.gradle.s3.BucketPolicyTask
-import jp.classmethod.aws.gradle.s3.CreateBucketTask
-import jp.classmethod.aws.gradle.s3.DeleteBucketTask
+import gradleutil.aws.gradle.s3.AmazonS3FileUploadTask
+import gradleutil.aws.gradle.s3.BucketPolicyTask
+import gradleutil.aws.gradle.s3.CreateBucketTask
+import gradleutil.aws.gradle.s3.DeleteBucketTask
 
 buildscript {
 	repositories {
@@ -19,11 +19,11 @@ buildscript {
 		maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.s3"
+apply plugin: "gradleutil.aws.s3"
 aws {
 	profileName = "default"
 	region = "ap-northeast-1"

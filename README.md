@@ -1,11 +1,10 @@
-<img align="left" src="https://github.com/gradleutil/gradle-aws-plugin/raw/master/docs/%E9%83%BD%E5%85%83%E3%83%80%E3%82%A4%E3%82%B9%E3%82%B1.png">
+<img align="right" src="https://github.com/gradleutil/gradle-aws-plugin/raw/master/docs/%E9%83%BD%E5%85%83%E3%83%80%E3%82%A4%E3%82%B9%E3%82%B1.png">
 
 Gradle AWS Plugin
 =================
 
 都元ダイスケ Daisuke Miyamoto ([@dai0304](https://github.com/dai0304)), the original maintainer of this project, passed away on February 17, 2020.
 RIP :cherry_blossom: :rosette: :hibiscus:
-<br/>The plugin has prefix of `gradleutil.aws` while the package is `jp.classmethod.aws`
 
 <hr style="clear:both;"/>
 Gradle plugin to manage AWS resources.
@@ -138,7 +137,7 @@ Look at [S3 example 1](samples/01-s3-upload-simple) for more information.
 ```groovy
 apply plugin: 'gradleutil.aws.s3'
 
-task syncObjects(type: jp.classmethod.aws.gradle.s3.SyncTask) {
+task syncObjects(type: SyncTask) {
   bucketName 'foobar.example.com'
   source file('path/to/objects')
 }
@@ -158,11 +157,11 @@ apply plugin: 'gradleutil.aws.ec2'
 //   region = 'us-east-1'
 // }
 
-task stopBastion(type: jp.classmethod.aws.gradle.ec2.AmazonEC2StopInstanceTask) {
+task stopBastion(type: AmazonEC2StopInstanceTask) {
   instanceIds += 'i-12345678'
 }
 
-task startBastion(type: jp.classmethod.aws.gradle.ec2.AmazonEC2StartInstanceTask) {
+task startBastion(type: AmazonEC2StartInstanceTask) {
   instanceIds += 'i-12345678'
 }
 ```
@@ -212,12 +211,12 @@ Look at [RDS example](samples/07-rds) for more information.
 ```groovy
 apply plugin: 'gradleutil.aws.route53'
 
-task createHostedZone(type: jp.classmethod.aws.gradle.route53.CreateHostedZoneTask) {
+task createHostedZone(type: CreateHostedZoneTask) {
 	hostedZoneName "foobar.example.com"
 	callerReference '0BF44985-9D79-BF3B-A9B0-5AE24D6E86E1'
 }
 
-task deleteHostedZone(type: jp.classmethod.aws.gradle.route53.DeleteHostedZoneTask) {
+task deleteHostedZone(type: DeleteHostedZoneTask) {
 	hostedZoneId "XXXX"
 }
 ```
@@ -417,7 +416,6 @@ Look at [SNS example](samples/10-sns) for more information.
 
 License
 -------
-Copyright (C) 2013-2018 [Classmethod, Inc.](http://classmethod.jp/)
 
 Distributed under the Apache License v2.0.  See the file [copyright/LICENSE.txt](copyright/LICENSE.txt).
 

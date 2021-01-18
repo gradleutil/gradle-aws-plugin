@@ -1,7 +1,7 @@
 // -*- coding: utf-8; mode: groovy -*-
 
 import groovy.json.JsonOutput
-import jp.classmethod.aws.gradle.sns.AmazonSNSPublishMessageTask;
+import gradleutil.aws.gradle.sns.AmazonSNSPublishMessageTask;
 
 buildscript {
 	repositories {
@@ -11,11 +11,11 @@ buildscript {
 
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.sns"
+apply plugin: "gradleutil.aws.sns"
 
 task publishMessage(type: AmazonSNSPublishMessageTask) {
 	topicArn 'arn:aws:sns:us-east-1:000000000000:gradle-aws-plugin-sns-topic'

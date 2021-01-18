@@ -1,11 +1,11 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.ec2.AmazonEC2ImportKeyTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2RunInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2StartInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2StopInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2TerminateInstanceTask;
-import jp.classmethod.aws.gradle.ec2.AmazonEC2WaitInstanceStatusTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2ImportKeyTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2RunInstanceTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2StartInstanceTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2StopInstanceTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2TerminateInstanceTask;
+import gradleutil.aws.gradle.ec2.AmazonEC2WaitInstanceStatusTask;
 
 buildscript {
 	repositories {
@@ -13,11 +13,11 @@ buildscript {
 		maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.ec2"
+apply plugin: "gradleutil.aws.ec2"
 aws {
 	profileName = "default"
 	region = "ap-northeast-1"

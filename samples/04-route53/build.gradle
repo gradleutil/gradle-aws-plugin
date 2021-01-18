@@ -1,7 +1,7 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.route53.CreateHostedZoneTask;
-import jp.classmethod.aws.gradle.route53.DeleteHostedZoneTask;
+import gradleutil.aws.gradle.route53.CreateHostedZoneTask;
+import gradleutil.aws.gradle.route53.DeleteHostedZoneTask;
 
 buildscript {
 	repositories {
@@ -9,11 +9,11 @@ buildscript {
 		maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.route53"
+apply plugin: "gradleutil.aws.route53"
 aws {
 	profileName = "default"
 	region = "ap-northeast-1"

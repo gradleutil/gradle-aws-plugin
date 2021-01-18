@@ -1,9 +1,9 @@
 // -*- coding: utf-8; mode: groovy -*-
 
-import jp.classmethod.aws.gradle.rds.AmazonRDSDeleteDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSMigrateDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSRebootDBInstanceTask;
-import jp.classmethod.aws.gradle.rds.AmazonRDSWaitInstanceStatusTask;
+import gradleutil.aws.gradle.rds.AmazonRDSDeleteDBInstanceTask;
+import gradleutil.aws.gradle.rds.AmazonRDSMigrateDBInstanceTask;
+import gradleutil.aws.gradle.rds.AmazonRDSRebootDBInstanceTask;
+import gradleutil.aws.gradle.rds.AmazonRDSWaitInstanceStatusTask;
 
 buildscript {
 	repositories {
@@ -11,11 +11,11 @@ buildscript {
 		maven { url "https://plugins.gradle.org/m2/" }
 	}
 	dependencies {
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
-apply plugin: "jp.classmethod.aws.rds"
+apply plugin: "gradleutil.aws.rds"
 aws {
 	profileName = "default"
 	region = "ap-northeast-1"

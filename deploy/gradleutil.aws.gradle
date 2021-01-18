@@ -1,0 +1,71 @@
+apply plugin: 'maven-publish'
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+}
+
+pluginBundle {
+	website = 'https://github.com/gradleutil/gradle-aws-plugin'
+	vcsUrl = 'https://github.com/gradleutil/gradle-aws-plugin'
+	description = 'Gradle plugin to manage Amazon Web Services'
+	tags = ['AWS']
+
+	plugins {
+		awsPlugin {
+			id = 'gradleutil.aws'
+			displayName = 'Gradle AWS plugin'
+		}
+		awsBeanstalkPlugin {
+			id = 'gradleutil.aws.beanstalk'
+			displayName = 'Gradle AWS Elastic Beanstalk plugin'
+		}
+		awsCloudFormationPlugin {
+			id = 'gradleutil.aws.cloudformation'
+			displayName = 'Gradle AWS CloudFormation plugin'
+		}
+		awsCloudWatchPlugin {
+			id = 'gradleutil.aws.cloudwatch'
+			displayName = 'Gradle Amazon CloudWatch plugin'
+		}
+		awsECRPlugin {
+			id = 'gradleutil.aws.ecr'
+			displayName = 'Gradle Amazon ECR plugin'
+		}
+		awsEC2Plugin {
+			id = 'gradleutil.aws.ec2'
+			displayName = 'Gradle Amazon EC2 plugin'
+		}
+		awsELBPlugin {
+			id = 'gradleutil.aws.elb'
+			displayName = 'Gradle Amazon Elastic Load Balancing plugin'
+		}
+		awsIAMPlugin {
+			id = 'gradleutil.aws.iam'
+			displayName = 'Gradle AWS Identity and Access Management plugin'
+		}
+		awsLambdaPlugin {
+			id = 'gradleutil.aws.lambda'
+			displayName = 'Gradle AWS Lambda plugin'
+		}
+		awsRDSPlugin {
+			id = 'gradleutil.aws.rds'
+			displayName = 'Gradle Amazon RDS plugin'
+		}
+		awsRoute53Plugin {
+			id = 'gradleutil.aws.route53'
+			displayName = 'Gradle Amazon Route53 plugin'
+		}
+		awsS3Plugin {
+			id = 'gradleutil.aws.s3'
+			displayName = 'Gradle Amazon S3 plugin'
+		}
+		awsSSMPlugin {
+			id = 'gradleutil.aws.ssm'
+			displayName = 'Gradle Amazon SSM plugin'
+		}
+	}
+}

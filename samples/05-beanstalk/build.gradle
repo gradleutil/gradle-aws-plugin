@@ -7,17 +7,17 @@ buildscript {
 	}
 	dependencies {
 		classpath "org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE"
-		classpath "jp.classmethod.aws:gradle-aws-plugin:0.+"
+		classpath "gradleutil.aws:gradle-aws-plugin:0.+"
 	}
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
-apply plugin: "jp.classmethod.aws.beanstalk"
+apply plugin: "gradleutil.aws.beanstalk"
 
 // ==== Project settings
 
-group = 'jp.classmethod.aws.gradle.sample'
+group = 'gradleutil.aws.gradle.sample'
 version = '0.1-SNAPSHOT'
 ext.artifactId = '05-beanstalk'
 
@@ -105,7 +105,7 @@ task createBundle(type: Zip, dependsOn: [createDockerfile, createBundleResources
 	from jar.archivePath
 }
 
-task uploadBundle(type: jp.classmethod.aws.gradle.s3.AmazonS3FileUploadTask, dependsOn: createBundle) {
+task uploadBundle(type: gradleutil.aws.gradle.s3.AmazonS3FileUploadTask, dependsOn: createBundle) {
 	group "AWS"
 	description "Upload ${artifactId} application bundle file to S3."
 	

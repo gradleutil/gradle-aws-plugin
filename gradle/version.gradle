@@ -11,17 +11,20 @@ buildscript {
 }
 
 if (project.version?.equals('unspecified')) {
-	try{
-		def git = org.ajoberstar.grgit.Grgit.open(file('.'))
-		def describedCommit = git.describe().toString().trim()
-		describedCommit +=
-			(describedCommit.matches(".*-[0-9]+-g[0-9a-f]{7}") ? "-SNAPSHOT" : "") +
-				(git.status().isClean() ? "" : "+dirty") as String ?: file('.version')
-		project.version = describedCommit
-	} catch (Exception e){
-		logger.error('Could not get git version')
-		project.version = file('.version').text + '-SNAPSHOT'
+	def getGitVersion = {
+		def describedCommit
+		try{
+			def git = org.ajoberstar.grgit.Grgit.open(file('.'))
+			describedCommit = git.describe().toString().trim()
+			describedCommit += describedCommit.matches(".*-[0-9]+-g[0-9a-f]{7}") ? "-SNAPSHOT" : ""
+			describedCommit += git.status().isClean() ? "" : "+dirty"
+		} catch (Exception e){
+			logger.error('Could not get git version:' + e.message)
+			describedCommit = file('.version').text + '-SNAPSHOT'
+		}
+		describedCommit ?: file('.version').text
 	}
+	project.version = getGitVersion()
 }
 
 logger.lifecycle("version ${version}")
