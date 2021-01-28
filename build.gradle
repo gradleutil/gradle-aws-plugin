@@ -18,7 +18,7 @@ buildscript {
 	}
 }
 
-group = "gradleutil.aws"
+group = "net.gradleutil"
 ext.artifactId = "gradle-aws-plugin"
 
 apply plugin: "java"
