@@ -28,7 +28,10 @@ import org.gradle.api.tasks.TaskAction;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.rds.AmazonRDS;
-import com.amazonaws.services.rds.model.*;
+import com.amazonaws.services.rds.model.DBCluster;
+import com.amazonaws.services.rds.model.DescribeDBClustersRequest;
+import com.amazonaws.services.rds.model.DescribeDBClustersResult;
+import com.amazonaws.services.rds.model.Filter;
 
 public class AmazonRDSDescribeDBClustersTask extends ConventionTask { // NOPMD
 	
@@ -67,7 +70,7 @@ public class AmazonRDSDescribeDBClustersTask extends ConventionTask { // NOPMD
 			if (getFilters() != null) {
 				request.withFilters(getFilters().entrySet().stream()
 					.map(it -> new Filter()
-						.withName(it.getKey().toString())
+						.withName(it.getKey())
 						.withValues(it.getValue()))
 					.collect(Collectors.toList()));
 			}
