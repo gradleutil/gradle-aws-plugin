@@ -49,7 +49,7 @@ public class AmazonRDSDescribeDBClustersTask extends ConventionTask { // NOPMD
 	
 	
 	public AmazonRDSDescribeDBClustersTask() {
-		setDescription("Describe AWS instances.");
+		setDescription("Describe AWS clusters.");
 		setGroup("AWS");
 	}
 	
